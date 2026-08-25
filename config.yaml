@@ -1,0 +1,141 @@
+# Theming
+font: JetBrainsMono Nerd Font 40
+background: "#24273add"
+color: "#ffffff"
+border: "#33ccffee"
+separator: " ➜ "
+border_width: 2
+corner_r: 10
+padding: 15 # Defaults to corner_r
+column_padding: 25 # Defaults to padding
+
+# Anchor and margin
+anchor: center # One of center, left, right, top, bottom, bottom-left, top-left, etc.
+# Only relevant when anchor is not center
+margin_right: 0
+margin_bottom: 0
+margin_left: 0
+margin_top: 0
+
+# namespace to use for the layer shell surface
+namespace: "wlr_which_key"
+
+# Permits key bindings that conflict with compositor key bindings.
+# Default is `false`.
+inhibit_compositor_keyboard_shortcuts: true
+
+# Try to guess the correct keyboard layout to use. Default is `false`.
+auto_kbd_layout: true
+
+menu:
+  - key: "p"
+    desc: programs
+    submenu:
+      - key: "a"
+        desc: "anki"
+        cmd: anki
+      - key: "f"
+        desc: "helium"
+        cmd: helium-browser
+      - key: "d"
+        desc: "discord"
+        cmd: vesktop
+      - key: "m"
+        desc: "milton"
+        cmd: milton
+      - key: "b"
+        desc: "btop"
+        cmd: kitty -o shell=btop
+      - key: "g"
+        desc: "godot"
+        cmd: godot
+      - key: "s"
+        desc: "sioyek"
+        cmd: sioyek
+      - key: "t"
+        desc: "paint"
+        cmd: tuxpaint
+      - key: "l"
+        desc: "librewolf"
+        cmd: librewolf --private-window
+  - key: "r"
+    desc: "rofi"
+    submenu:
+      - key: "r"
+        desc: "run"
+        cmd: rofi -show run
+      - key: "u"
+        desc: "unicode"
+        cmd: rofimoji -f all
+      - key: "s"
+        desc: "math"
+        cmd: rofimoji -f ~/.local/math.csv
+      - key: "e"
+        desc: "emoji"
+        cmd: rofimoji
+  - key: "g"
+    desc: "games"
+    submenu:
+      - key: "s"
+        desc: "steam"
+        cmd: steam
+      - key: "g"
+        desc: "run games"
+        cmd: ~/.local/scripts/run-games
+      - key: "n"
+        desc: "nethack"
+        cmd: kitty -c ~/.config/kitty/nethack.conf -o shell=/bin/nethack
+      - key: "d"
+        desc: "DOL"
+        cmd: firefox "~/Games/Degrees of Lewdity/Degrees of Lewdity 0.5.10.12.html"
+      - key: "u"
+        desc: "ultrakill"
+        cmd: steam steam://rungameid/1229490
+      - key: "F"
+        desc: "factorio"
+        cmd: steam steam://rungameid/427520
+      - key: "r"
+        desc: "replicube"
+        cmd: steam steam://rungameid/3401490
+      - key: "v"
+        desc: "visual novels"
+        submenu:
+          - key: "f"
+            desc: "fate/stay night"
+            cmd: lutris fatestay-night
+          - key: "s"
+            desc: "STEINS;GATE"
+            cmd: steam steam://rungameid/412830
+          - key: "b"
+            desc: "subahibi"
+            cmd: lutris wonderful-everyday
+          - key: "u"
+            desc: "saya no uta"
+            cmd: lutris song-of-saya
+  - key: "s"
+    desc: "system ctl"
+    submenu:
+      - key: "p"
+        desc: "poweroff"
+        cmd: hyprshutdown && poweroff
+      - key: "r"
+        desc: "reboot"
+        cmd: hyprshutdown && reboot
+      - key: "s"
+        desc: "soft reboot"
+        cmd: hyprshutdown && systemctl soft-reboot
+      - key: "l"
+        desc: "logout"
+        cmd: hyprshutdown
+  - key: "c"
+    desc: ".config"
+    submenu:
+      - key: "w"
+        desc: "wlroots-which-key"
+        cmd: kitty -o shell="nvim $HOME/.config/wlr-which-key/config.yaml"
+      - key: "h"
+        desc: "hyprland"
+        cmd: kitty -o shell='sh -c "cd $HOME/.config/hypr && nvim hyprland.lua"'
+      - key: "k"
+        desc: keymenu
+        cmd: kitty -o shell="nvim $HOME/.config/keymenu/keymenu.conf"

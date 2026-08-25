@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# wrapper around unzip
+
+usage() {
+	echo "Usage: $0 <file[.zip]> ..."
+}
+
+if [[ "$1" == "" ]]; then
+	usage
+	exit 1
+fi
+
+temp_dir=$(mktemp -d)
+
+unzip -d "$temp_dir" "$1"
+files=("$temp_dir"/*)
+# num_files=$(ls "$temp_dir" | wc -l)
+num_files=${#files[@]}
+
+if [[ "$num_files" == 1 ]] && [[ -d ${files[0]} ]]; then
+	file=$(echo "$temp_dir"/* | head -1)
+	mv "$file" .
+else
+	dir=$(basename "$1" .zip)
+	mkdir -p "$dir"
+	cp -r "$temp_dir"/* "$dir"
+fi
+
+rm -fr "$temp_dir"

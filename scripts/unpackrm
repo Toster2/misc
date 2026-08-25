@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+	echo "usage: unpackrm <archive>"
+	exit 1
+fi
+
+unpack "$1"
+rm "$1"

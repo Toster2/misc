@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+ext() {
+	[[ "$1" == *.* ]] && echo "${1##*.}" || echo ""
+}
+
+for file in ~/Downloads/*; do
+	extension=$(ext "$file")
+	case "$extension" in
+	mp4) mv "$file" ~/Videos ;;
+	tas) mv "$file" ~/Documents/tas ;;
+	zip | gz | xz) mv "$file" ~/Downloads/zips ;;
+	png | jpg) mv "$file" ~/Pictures ;;
+	stl) mv "$file" ~/Documents/3d-printer ;;
+	jar) mv "$file" ~/Downloads/mods ;;
+	torrent) mv "$file" ~/Documents/torrent ;;
+	pdf) mv "$file" ~/Documents/pdf ;;
+	esac
+done

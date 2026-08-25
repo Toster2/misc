@@ -1,0 +1,13 @@
+#!/usr/bin/env nu
+
+def main [mod] {
+  let pat = $mod | str replace . /
+  let dir = ["src/", ($pat | path dirname)] | str join
+  let f   = ["src/", $pat, ".hs"] | str join
+  let cab = [(pwd | path basename), ".cabal"] | str join
+  cat $cab | str replace "other-modules: " $"other-modules: ($mod) " | save -f $cab
+  mkdir -v $dir
+  touch $f
+  echo $"module ($mod) where" o> $f
+
+}

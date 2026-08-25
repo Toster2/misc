@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+	echo "usage: unpackrm <archive>"
+	exit 1
+fi
+
+f="$1"
+
+if [[ ! -f "$f" ]]; then
+	echo "$0: error: file '$f' not found"
+	exit 1
+fi
+
+case "$f" in
+	*.zip) uzip "$f" ;;
+	*.tar|*.tar.gz|*.tgz|*.tar.xz|*.txz|*.tar.bz2|*.tbz2) tar -xvf "$f" ;;
+	*.7zip|*.7z) 7z x "$f" ;;
+	*.rar) unrar x "$f" ;;
+	*) echo "unsupported archive format"; exit 1 ;;
+esac
+
